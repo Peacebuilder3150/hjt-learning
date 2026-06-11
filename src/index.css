@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  /* オフホワイト基調 + パープル×ゴールド */
+  --color-cream: #faf9f6;
+  --color-ink: #2a2233;
+
+  --color-plum-50: #f7f2fc;
+  --color-plum-100: #ece2f6;
+  --color-plum-200: #d9c5ec;
+  --color-plum-300: #b492d6;
+  --color-plum-400: #976cc0;
+  --color-plum-500: #7c4dab;
+  --color-plum-600: #5b2d8e;
+  --color-plum-700: #46226e;
+  --color-plum-800: #351a54;
+
+  --color-gold-100: #f4ead0;
+  --color-gold-200: #ecdcab;
+  --color-gold-300: #e0c98a;
+  --color-gold-400: #d5b568;
+  --color-gold-500: #c9a24b;
+  --color-gold-600: #b08a36;
+  --color-gold-700: #8e6e2a;
+
+  --font-sans: "Noto Sans JP", system-ui, sans-serif;
+  --font-display: "Shippori Mincho", "Noto Sans JP", serif;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-plum-700 to-plum-500 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-gold-600 to-gold-400 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-plum-700 ring-1 ring-plum-200 transition hover:bg-plum-50;
+  }
+  .input {
+    @apply w-full rounded-xl border border-plum-200 bg-white px-4 py-2.5 text-sm outline-none transition placeholder:text-ink/30 focus:border-plum-500 focus:ring-2 focus:ring-plum-100;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold tracking-wide text-plum-700;
+  }
+  .card {
+    @apply rounded-2xl bg-white shadow-sm ring-1 ring-plum-100;
+  }
+}
