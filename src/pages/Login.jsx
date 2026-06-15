@@ -49,7 +49,7 @@ export default function Login() {
       <div className="relative w-full max-w-md">
         <div className="mb-8 text-center">
           <Brand large />
-          <p className="mt-3 text-sm tracking-wide text-ink/50">出版 × マーケティングを、動画で学ぶ。</p>
+          <p className="mt-3 text-sm font-medium tracking-wide text-ink/55">動画で学ぶ「出版 × マーケティング」</p>
         </div>
 
         <div className="rounded-3xl bg-white/85 p-8 shadow-xl ring-1 ring-plum-100 backdrop-blur sm:p-10">

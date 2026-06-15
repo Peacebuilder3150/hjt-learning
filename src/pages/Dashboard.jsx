@@ -18,7 +18,7 @@ export default function Dashboard() {
     <Layout>
       <div className="mx-auto max-w-6xl">
         <p className="text-[11px] font-bold tracking-[0.25em] text-gold-600">MY COURSES</p>
-        <h1 className="mt-1 font-display text-2xl font-semibold text-plum-800 sm:text-3xl">マイコース</h1>
+        <h1 className="mt-1 font-display text-3xl font-bold tracking-tight text-plum-800 sm:text-4xl">マイコース</h1>
         <p className="mt-2 text-sm text-ink/60">{member.name}さま、ようこそ。今日も学習を進めましょう。</p>
 
         {error && <p className="mt-6 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
@@ -43,7 +43,7 @@ export default function Dashboard() {
                       <span className="rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold text-white">修了 🎉</span>
                     )}
                   </div>
-                  <h2 className="mt-4 font-display text-lg font-semibold leading-snug text-plum-800 group-hover:text-plum-600">
+                  <h2 className="mt-4 font-display text-lg font-bold leading-snug text-plum-800 group-hover:text-plum-600">
                     {c.title}
                   </h2>
                   <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-ink/55">{c.description}</p>

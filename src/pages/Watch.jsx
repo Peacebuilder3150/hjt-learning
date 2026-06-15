@@ -129,7 +129,7 @@ export default function Watch() {
               <span className="mx-1.5">/</span>
               {video.themeTitle}
             </p>
-            <h1 className="mt-1.5 font-display text-xl font-semibold leading-snug text-plum-800 sm:text-2xl">
+            <h1 className="mt-1.5 font-display text-2xl font-bold leading-snug tracking-tight text-plum-800 sm:text-3xl">
               {video.title}
             </h1>
 

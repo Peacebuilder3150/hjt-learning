@@ -9,14 +9,14 @@ export default function CourseSidebar({ course, currentVideoId, onNavigate }) {
       <Link
         to={`/course/${course.id}`}
         onClick={onNavigate}
-        className="mt-1 block rounded-lg px-2 py-2 font-display text-base font-semibold leading-snug text-plum-800 hover:bg-plum-50"
+        className="mt-1 block rounded-lg px-2 py-2 font-display text-base font-bold leading-snug text-plum-800 hover:bg-plum-50"
       >
         {course.title}
       </Link>
       <div className="mt-3 space-y-1">
         {course.themes.map((t) => (
           <details key={t.id} open={!currentVideoId || t.videos.some((v) => v.id === currentVideoId)} className="group">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg px-2 py-2 text-sm font-semibold text-plum-700 hover:bg-plum-50">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg px-2 py-2 text-sm font-bold text-plum-800 hover:bg-plum-50">
               <span className="leading-snug">{t.title}</span>
               <svg
                 viewBox="0 0 20 20"

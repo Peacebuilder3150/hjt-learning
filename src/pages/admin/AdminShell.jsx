@@ -11,7 +11,7 @@ export default function AdminShell({ children }) {
     <Layout>
       <div className="mx-auto max-w-6xl">
         <p className="text-[11px] font-bold tracking-[0.25em] text-gold-600">ADMIN</p>
-        <h1 className="mt-1 font-display text-2xl font-semibold text-plum-800 sm:text-3xl">管理画面</h1>
+        <h1 className="mt-1 font-display text-3xl font-bold tracking-tight text-plum-800 sm:text-4xl">管理画面</h1>
         <div className="mt-5 flex flex-wrap items-center gap-2 border-b border-plum-100 pb-3">
           <NavLink to="/admin" end className={tabClass}>
             コンテンツ管理

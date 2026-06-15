@@ -29,7 +29,7 @@ export default function CoursePage() {
           <>
             <div className="card bg-linear-to-r from-plum-700 to-plum-500 p-6 !ring-0 sm:p-8">
               <p className="text-[11px] font-bold tracking-[0.25em] text-gold-300">COURSE</p>
-              <h1 className="mt-1 font-display text-xl font-semibold text-white sm:text-2xl">{course.title}</h1>
+              <h1 className="mt-1 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">{course.title}</h1>
               {course.description && <p className="mt-2 max-w-2xl text-xs leading-relaxed text-white/70">{course.description}</p>}
               <div className="mt-5 max-w-md">
                 <div className="flex items-end justify-between text-xs text-white/80">
@@ -53,7 +53,7 @@ export default function CoursePage() {
             {course.themes.map((t) => (
               <section key={t.id} className="mt-10">
                 <div className="flex items-baseline gap-3">
-                  <h2 className="font-display text-lg font-semibold text-plum-800">{t.title}</h2>
+                  <h2 className="font-display text-xl font-bold text-plum-800">{t.title}</h2>
                   <span className="h-px flex-1 bg-linear-to-r from-gold-300 to-transparent" />
                   <span className="text-xs text-ink/40">{t.videos.length}本</span>
                 </div>
