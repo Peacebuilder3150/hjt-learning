@@ -60,7 +60,7 @@ export default function CoursePage() {
                 {t.videos.length === 0 ? (
                   <p className="mt-4 text-xs text-ink/40">このテーマの動画は準備中です。</p>
                 ) : (
-                  <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
+                  <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
                     {t.videos.map((v) => (
                       <VideoCard key={v.id} video={v} />
                     ))}
