@@ -28,7 +28,7 @@ export default function Brand({ large = false }) {
       <span className="inline-block pb-0.5 font-display font-extrabold leading-[1.2] tracking-wide bg-linear-to-br from-plum-600 to-plum-800 bg-clip-text text-transparent text-2xl">
         HJT
       </span>
-      <span className="font-display font-bold text-plum-700 text-lg whitespace-nowrap">
+      <span className="hidden font-display font-bold text-plum-700 text-lg whitespace-nowrap sm:inline">
         メソッド<span className="align-super text-[10px]">™</span>
       </span>
       <span className="ml-1 hidden font-medium tracking-[0.25em] text-gold-600 text-[11px] whitespace-nowrap sm:inline-block">

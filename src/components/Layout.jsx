@@ -39,6 +39,12 @@ export default function Layout({ sidebar, children }) {
               </Link>
             )}
             <span className="hidden whitespace-nowrap text-sm text-ink/70 md:block">{member?.name} さま</span>
+            <Link
+              to="/account"
+              className="shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-xs text-ink/50 hover:bg-plum-50 hover:text-plum-700"
+            >
+              設定
+            </Link>
             <button
               type="button"
               onClick={signOut}

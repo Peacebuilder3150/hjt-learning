@@ -96,6 +96,15 @@ export function registerFirstTime(email, password) {
   return publicMember(m)
 }
 
+export function changePassword(memberId, currentPassword, newPassword) {
+  const db = load()
+  const m = db.members.find((x) => x.id === memberId)
+  if (!m) throw new Error('会員情報が見つかりませんでした。')
+  if (m.password !== currentPassword) throw new Error('いまお使いのパスワードが違います。')
+  m.password = newPassword
+  save(db)
+}
+
 export function signOut() {
   localStorage.removeItem(SESSION_KEY)
 }
