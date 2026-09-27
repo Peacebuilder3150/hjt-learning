@@ -1,13 +1,19 @@
-# 保管庫(Supabase)の無料プランは、1週間まったく使われないと自動でお休みに入ってしまう。
-# それを防ぐため、3日に1回だけ自動で保管庫に軽く声をかけ、「使われている」状態を保つ。
-# あわせて、保管庫に異常があればこの処理が失敗してGitHubからメールが届くので、
-# 不具合の早期発見にも役立つ。
+# 保管庫(Supabase)の無料プランは、しばらく使われないと自動でお休みに入ってしまう。
+# 公式の目安は「1日に数回のデータベースへのアクセスが、直近1週間あること」。
+# それを満たすため、4時間ごと(1日6回)に、サイト本体と同じ部品(supabase-js)で
+# サイトを開いたときと同じ読み込みを行う(中身は scripts/keep-awake.mjs)。
+# 保管庫に異常があればこの処理が失敗してGitHubからメールが届くので、見張り番も兼ねる。
+#
+# 経緯(2026-09): 当初は「3日に1回・1か所だけ」の呼びかけで、応答は正常だったにもかかわらず
+# Supabaseに活動と数えてもらえず停止された。そのため頻度と読み込み方を見直した。
 name: 保管庫を眠らせない
 
 on:
   schedule:
-    # 3日ごと、日本時間のお昼12時ごろ(UTCの午前3時)に実行
-    - cron: '0 3 */3 * *'
+    # 4時間ごと(毎時0分ちょうどは混雑して遅れやすいため23分にずらす)
+    - cron: '23 */4 * * *'
+    # 毎週月曜: あわせて実行記録を更新する(GitHubの自動実行は60日動きがないと止まるため)
+    - cron: '47 1 * * 1'
   # 手動でも実行できるようにしておく
   workflow_dispatch:
 
@@ -24,25 +30,21 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
       - name: 保管庫に声をかける
         env:
           SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-        run: |
-          code=$(curl -s -o response.txt -w '%{http_code}' \
-            -H "apikey: ${SUPABASE_KEY}" \
-            -H "Authorization: Bearer ${SUPABASE_KEY}" \
-            "${SUPABASE_URL}/rest/v1/courses?select=id&limit=1")
-          echo "応答コード: ${code}"
-          if [ "${code}" != "200" ]; then
-            echo "::error::保管庫からの応答が異常です(応答コード ${code})。Supabaseの状態をご確認ください。"
-            cat response.txt || true
-            exit 1
-          fi
-          echo "保管庫は正常に応答しました。"
-          rm -f response.txt
+        run: node scripts/keep-awake.mjs
 
-      - name: 実行日時を記録する(GitHubの自動実行が止まるのを防ぐため)
+      - name: 実行記録を更新する(週1回)
+        if: github.event.schedule == '47 1 * * 1' || github.event_name == 'workflow_dispatch'
         run: |
           date -u '+最終確認: %Y-%m-%d %H:%M UTC' > .keepalive
           git config user.name "github-actions[bot]"
